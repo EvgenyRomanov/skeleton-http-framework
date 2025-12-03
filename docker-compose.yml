@@ -1,0 +1,54 @@
+services:
+    nginx:
+        build:
+            context: docker/dev/nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/app
+        depends_on:
+            - php-fpm
+
+    php-fpm:
+        build:
+            context: docker/dev/php-fpm
+        volumes:
+            - ./:/app
+        depends_on:
+            - db
+
+    php-cli:
+        build:
+            context: docker/dev/php-cli
+        volumes:
+            - ./:/app
+        depends_on:
+            - db
+
+    php-job-worker:
+        build:
+            context: docker/dev/php-cli
+            target: worker
+        volumes:
+            - ./:/app
+        depends_on:
+            - db
+
+    db:
+        image: postgres:15
+        ports:
+            - "5432:5432"
+        shm_size: 128mb
+        environment:
+            - POSTGRES_USER=${DB_USERNAME}
+            - POSTGRES_DB=${DB_DATABASE}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U postgres -h 127.0.0.1" ]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+        volumes:
+            - db:/var/lib/postgresql/data
+volumes:
+    db:
