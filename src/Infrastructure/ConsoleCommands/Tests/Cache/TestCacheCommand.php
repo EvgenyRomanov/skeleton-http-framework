@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'cache:test', description: 'Консольная команда для тестов')]
 final class TestCacheCommand extends Command
 {
@@ -20,9 +21,10 @@ final class TestCacheCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $val = $this->cache->get('my_cache_key', static function (ItemInterface $item): string {
                 $item->expiresAfter(30);
                 return 'foobar';

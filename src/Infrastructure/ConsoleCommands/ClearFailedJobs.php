@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'queue:clear_failed_jobs', description: 'Очистка failed jobs')]
 final class ClearFailedJobs extends Command
 {
@@ -18,9 +19,10 @@ final class ClearFailedJobs extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $this->capsule::table('illuminate_failed_jobs')->truncate();
         }, $input, $output);
     }

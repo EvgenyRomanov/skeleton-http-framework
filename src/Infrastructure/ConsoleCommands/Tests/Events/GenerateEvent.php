@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'events:generate', description: 'Консольная команда для тестов')]
 final class GenerateEvent extends Command
 {
@@ -20,9 +21,10 @@ final class GenerateEvent extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $this->dispatcher->dispatch(new ExampleEvent('1q2w3e'));
         }, $input, $output);
     }

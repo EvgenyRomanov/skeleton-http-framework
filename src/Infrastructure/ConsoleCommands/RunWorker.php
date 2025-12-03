@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'worker:run', description: "Запуск worker'а обработки jobs")]
 final class RunWorker extends Command
 {
@@ -20,6 +21,7 @@ final class RunWorker extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this
@@ -106,7 +108,7 @@ final class RunWorker extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function () use ($input): void {
             $connectionName = $input->getArgument('connection_name');
             $queue = $input->getArgument('queue');
 

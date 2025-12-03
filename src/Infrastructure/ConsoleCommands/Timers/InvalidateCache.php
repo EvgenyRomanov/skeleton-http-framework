@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'cache:invalidate', description: 'Инвалидация кэша')]
 final class InvalidateCache extends Command
 {
@@ -19,9 +20,10 @@ final class InvalidateCache extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $this->cache->prune();
         }, $input, $output);
     }

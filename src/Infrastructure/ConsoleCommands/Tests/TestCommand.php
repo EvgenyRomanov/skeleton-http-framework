@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'test:test', description: 'Test command')]
 final class TestCommand extends Command
 {
@@ -19,9 +20,10 @@ final class TestCommand extends Command
         $this->addArgument('test');
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(static function () use ($input, $output): void {
+        return CommandHelper::execute(static function (): void {
             dump(User::all());
         }, $input, $output);
     }

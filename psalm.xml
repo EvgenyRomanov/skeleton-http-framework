@@ -7,11 +7,18 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="public" />
         <directory name="src" />
         <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
+            <directory name="config" />
+            <directory name="bootstrap" />
+            <directory name="database" />
+            <file name="src/Infrastructure/CustomCallableResolver.php" />
+            <file name="src/Infrastructure/Listeners/JobProcessedListener.php" />
+            <file name="src/Infrastructure/Listeners/JobProcessingListener.php" />
+            <file name="src/Infrastructure/Listeners/JobFailedListener.php" />
+            <directory name="public" />
         </ignoreFiles>
     </projectFiles>
 

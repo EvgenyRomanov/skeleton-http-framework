@@ -14,6 +14,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'queue:push', description: 'Тестирование queue')]
 final class QueuePush extends Command
 {
@@ -22,9 +23,10 @@ final class QueuePush extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $this->dispatcher->dispatch(new ExampleJob(['message' => 1]));
             \Illuminate\Queue\Capsule\Manager::pushOn('queue2', new ExampleJob(['message' => 2]));
             \Illuminate\Queue\Capsule\Manager::pushOn('default', new ExampleJob2(['message' => 3]));

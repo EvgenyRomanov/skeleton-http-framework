@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'queue:count_jobs', description: 'Кол-во jobs на текущий момент')]
 final class CountJobs extends Command
 {
@@ -18,9 +19,10 @@ final class CountJobs extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function () use ($output): void {
             $count = $this->capsule::table('illuminate_failed_jobs')->count();
             $output->writeln("<error>failed_jobs</error>: {$count}");
 

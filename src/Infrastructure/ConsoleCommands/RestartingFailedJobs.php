@@ -10,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'queue:restarting_failed_jobs', description: 'Перезапуск failed jobs')]
 final class RestartingFailedJobs extends Command
 {
@@ -20,9 +21,10 @@ final class RestartingFailedJobs extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input, $output): void {
+        return CommandHelper::execute(function (): void {
             $table = 'illuminate_failed_jobs';
             $failedJobs = $this->capsule::table($table)->get();
 
