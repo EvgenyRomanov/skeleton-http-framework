@@ -1,13 +1,32 @@
-# General
-Slim - обработка http-запросов, ядро проекта.
+# 🧩🏗️ PHP skeleton http framework
 
-Illuminate/container - IoC-контейнер с зависимостями
+## 📝 Описание
+Представляет собой скелет типового проекта на PHP.  
 
-ORM - Eloquent
+В проекте собраны воедино и настроены такие компоненты как:
+ - HTTP-ядро на Slim
+    - slim/psr7
+    - slim/slim
+    - slim/twig-view
+ - Компоненты из экосистемы Laravel
+    - ORM Eloquent illuminate/database
+    - Диспетчер событий illuminate/events
+    - Обработчик заданий illuminate/queue
+ - Компоненты Symfony
+    - Система миграций doctrine/migrations
+    - Кэш symfony/cache
+    - Консольные команды symfony/console
+ - Компоненты Laminas
+    - Конфиг-агрегатор laminas/laminas-config-aggregator
+ - Компоненты для тестирования и статического анализа и др.
 
+## 📑 Особенности
+- 🐳 Готовое окружение — Docker-контейнеры для быстрого запуска
+- ⚙️ Удобное управление — Makefile с предустановленными командами
+- ▶️ Примеры, как и где данные компоненты используются
+- 🔧 Базовая конфигурация
 
----
-# Documentation
+# 📚 Documentation
 
 ## Slim
 - https://www.slimframework.com/
@@ -23,50 +42,18 @@ ORM - Eloquent
 ## VarDumper
 - https://symfony.com/doc/current/components/var_dumper.html
 ## IoC
-- https://laravel.su/docs/8.x/container
+- https://laravel.su/docs/12.x/container
 - https://habr.com/ru/articles/331982/
 ## Queue, Jobs, Workers
 - https://laravel.su/docs/12.x/queues
 - https://laravel.com/docs/12.x/queues
 - https://github.com/illuminate/queue
-
----
 ## Migrations
 - https://www.doctrine-project.org/projects/doctrine-migrations/en/3.9/reference/introduction.html
-
-Консольные команды
-```shell
-php bin/console.php 
-```
----
-
 ## Console Commands
 - https://dev.to/robertobutti/building-a-command-line-tool-with-php-and-symfony-console-4n6g
 - https://odan.github.io/slim4-skeleton/console.html
 - https://php.zone/symfony-course/znakomstvo-s-konsolnymi-komandami-v-symfony-cron
 - https://symfony.com/doc/current/components/console.html
-
-Команды регистрируются в `config/console_commands/`
-
----
-## Events, Listeners
-Подписка на события `config/event_listener_mappings/`
-
----
-## Worker
-Example:
-```shell
-php bin/console.php worker:run --rest=3 default test_queue_name,default
-```
-
----
 ## Cache
-`\Symfony\Component\Cache\Adapter\PdoAdapter`
 https://symfony.com/doc/7.x/cache.html
-
----
-## Tests
-
-```shell
-php ./vendor/bin/phpunit tests
-```
