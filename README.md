@@ -56,4 +56,4 @@
 - https://php.zone/symfony-course/znakomstvo-s-konsolnymi-komandami-v-symfony-cron
 - https://symfony.com/doc/current/components/console.html
 ## Cache
-https://symfony.com/doc/7.x/cache.html
+https://symfony.com/doc/7.3/cache.html
