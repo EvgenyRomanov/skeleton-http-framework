@@ -1,8 +1,8 @@
 FROM php:8.3-fpm-alpine
 
 RUN apk update && apk add --no-cache \
-    postgresql15-client \
-    postgresql15-dev \
+    postgresql-client \
+    postgresql-dev \
     bash \
     curl \
     git \
