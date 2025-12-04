@@ -6,6 +6,7 @@ namespace App\Infrastructure\Listeners;
 
 use App\Infrastructure\Events\ExampleEvent;
 
+/** @psalm-suppress UnusedClass */
 final class ExampleEventListener
 {
     public function handle(ExampleEvent $event): void

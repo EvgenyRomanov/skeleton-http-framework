@@ -14,6 +14,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/** @psalm-suppress UnusedClass */
 final readonly class TestAction
 {
     public function __construct(
@@ -23,6 +24,7 @@ final readonly class TestAction
         private \Illuminate\Contracts\Events\Dispatcher $eventDispatcher
     ) {}
 
+    /** @psalm-suppress UnusedParam */
     public function index(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // ---------------- DB --------------------------
@@ -42,14 +44,18 @@ final readonly class TestAction
         $this->eventDispatcher->dispatch(new ExampleEvent('1q2w3e'));
 
         $response = $this->responseFactory->createResponse();
+        /** @psalm-suppress PossiblyFalseArgument */
         $response->getBody()->write(json_encode([1, 2, 3, 4, 5]));
 
         return $response->withHeader('Content-Type', 'application/json');
     }
 
+    /** @psalm-suppress UnusedParam */
     public function show(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
+        /** @psalm-suppress MixedOperand */
         $res = ['test' => 'show_' . $args['id']];
+        /** @psalm-suppress PossiblyFalseArgument */
         $response->getBody()->write(json_encode($res));
 
         return $response->withHeader('Content-Type', 'application/json');

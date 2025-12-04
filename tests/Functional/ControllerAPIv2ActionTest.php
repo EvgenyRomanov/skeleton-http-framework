@@ -15,6 +15,7 @@ final class ControllerAPIv2ActionTest extends BaseTestAbstract
     {
         $request = $this->createRequest('GET', "/api/v2/test2");
 
+        /** @psalm-suppress PossiblyNullReference */
         $response = $this->app->handle($request);
 
         self::assertEquals(200, $response->getStatusCode());

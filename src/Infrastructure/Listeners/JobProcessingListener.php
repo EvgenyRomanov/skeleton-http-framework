@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Listeners;
 
+/** @psalm-suppress UnusedClass */
 final class JobProcessingListener
 {
     public function handle(\Illuminate\Queue\Events\JobProcessing $event): void

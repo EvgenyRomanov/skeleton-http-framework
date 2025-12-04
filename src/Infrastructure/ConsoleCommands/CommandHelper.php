@@ -11,6 +11,9 @@ use Throwable;
 
 final class CommandHelper
 {
+    /**
+     * @psalm-suppress UnusedParam
+     */
     public static function execute(callable $function, InputInterface $input, OutputInterface $output): int
     {
         try {

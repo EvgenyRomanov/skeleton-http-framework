@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\ConsoleCommands\Tests\Cache;
 
 use App\Infrastructure\ConsoleCommands\CommandHelper;
+use Override;
 use Symfony\Component\Cache\Adapter\PdoAdapter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -21,10 +22,11 @@ final class TestCacheCommand extends Command
         parent::__construct();
     }
 
-    #[\Override]
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(function (): void {
+            /** @psalm-suppress MixedAssignment */
             $val = $this->cache->get('my_cache_key', static function (ItemInterface $item): string {
                 $item->expiresAfter(30);
                 return 'foobar';

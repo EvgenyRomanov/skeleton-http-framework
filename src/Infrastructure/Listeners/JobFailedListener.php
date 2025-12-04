@@ -6,6 +6,7 @@ namespace App\Infrastructure\Listeners;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+/** @psalm-suppress UnusedClass */
 final class JobFailedListener
 {
     private Capsule $capsule;

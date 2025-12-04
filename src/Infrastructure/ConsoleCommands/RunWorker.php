@@ -6,6 +6,7 @@ namespace App\Infrastructure\ConsoleCommands;
 
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
+use Override;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +22,7 @@ final class RunWorker extends Command
         parent::__construct();
     }
 
-    #[\Override]
+    #[Override]
     protected function configure(): void
     {
         $this
@@ -106,23 +107,24 @@ final class RunWorker extends Command
             );
     }
 
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(function () use ($input): void {
-            $connectionName = $input->getArgument('connection_name');
-            $queue = $input->getArgument('queue');
+            $connectionName = (string) $input->getArgument('connection_name');
+            $queue = (string) $input->getArgument('queue');
 
-            $workerName = $input->getOption('worker_name');
-            $backoff = $input->getOption('backoff');
-            $memory = $input->getOption('memory');
-            $timeout = $input->getOption('timeout');
-            $sleep = $input->getOption('sleep');
-            $maxTries = $input->getOption('max_tries');
-            $force = $input->getOption('force');
-            $stopWhenEmpty = $input->getOption('stop_when_empty');
-            $maxJobs = $input->getOption('max_jobs');
-            $maxTime = $input->getOption('max_time');
-            $rest = $input->getOption('rest');
+            $workerName = (string) $input->getOption('worker_name');
+            $backoff = (int) $input->getOption('backoff');
+            $memory = (int) $input->getOption('memory');
+            $timeout = (int) $input->getOption('timeout');
+            $sleep = (int) $input->getOption('sleep');
+            $maxTries = (int) $input->getOption('max_tries');
+            $force = (bool) $input->getOption('force');
+            $stopWhenEmpty = (bool) $input->getOption('stop_when_empty');
+            $maxJobs = (int) $input->getOption('max_jobs');
+            $maxTime = (int) $input->getOption('max_time');
+            $rest = (int) $input->getOption('rest');
 
             $this->worker->daemon(
                 $connectionName,

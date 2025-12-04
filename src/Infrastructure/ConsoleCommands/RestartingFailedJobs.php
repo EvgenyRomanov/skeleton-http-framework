@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\ConsoleCommands;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Override;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +22,7 @@ final class RestartingFailedJobs extends Command
         parent::__construct();
     }
 
-    #[\Override]
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(function (): void {
@@ -30,6 +31,7 @@ final class RestartingFailedJobs extends Command
 
             foreach ($failedJobs as $failedJob) {
                 // Отправляем задачу обратно в очередь
+                /** @psalm-suppress MixedArgument */
                 $this->manager->pushRaw($failedJob->payload, $failedJob->queue);
 
                 // Удаляем задачу из таблицы failed_jobs

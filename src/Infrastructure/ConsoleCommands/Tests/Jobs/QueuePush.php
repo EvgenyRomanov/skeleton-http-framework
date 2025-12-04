@@ -9,6 +9,7 @@ use App\Infrastructure\Jobs\ExampleJob;
 use App\Infrastructure\Jobs\ExampleJob2;
 use App\Infrastructure\Jobs\ExampleJob3;
 use Illuminate\Contracts\Bus\Dispatcher;
+use Override;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,7 +24,7 @@ final class QueuePush extends Command
         parent::__construct();
     }
 
-    #[\Override]
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(function (): void {

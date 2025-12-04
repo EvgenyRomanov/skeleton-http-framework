@@ -6,6 +6,7 @@ namespace App\Infrastructure\ConsoleCommands\Tests;
 
 use App\Infrastructure\ConsoleCommands\CommandHelper;
 use App\Infrastructure\Models\User;
+use Override;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,12 +16,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'test:test', description: 'Test command')]
 final class TestCommand extends Command
 {
+    #[Override]
     protected function configure(): void
     {
         $this->addArgument('test');
     }
 
-    #[\Override]
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(static function (): void {

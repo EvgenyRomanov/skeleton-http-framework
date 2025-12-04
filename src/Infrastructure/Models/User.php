@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property $email
+ * @psalm-suppress MissingTemplateParam
  */
 final class User extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
+    /** @psalm-suppress MissingReturnType */
     protected static function newFactory()
     {
         return UserFactory::new();

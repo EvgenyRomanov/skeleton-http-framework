@@ -12,6 +12,10 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
+/**
+ * @psalm-suppress PossiblyUnusedProperty
+ * @psalm-suppress UnusedProperty
+ */
 final class ExampleJob3 implements ShouldQueue
 {
     use Queueable;
@@ -32,15 +36,17 @@ final class ExampleJob3 implements ShouldQueue
         $this->data = $data;
     }
 
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function handle(TestService $testService): void
     {
+        dump($testService->handle());
         throw new Exception('Test 12345');
     }
 
     /**
-    * Обработать провал задания.
-    * @return void
-    */
+     * Обработать провал задания.
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function failed(Throwable $exception): void
     {
         dump('выброс исключения: ' . $exception->getMessage());

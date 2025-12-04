@@ -13,6 +13,7 @@ final class ControllerHome extends BaseTestAbstract
     {
         $request = $this->createRequest('GET', "/", []);
 
+        /** @psalm-suppress PossiblyNullReference */
         $response = $this->app->handle($request);
 
         $this->assertEquals(200, $response->getStatusCode());

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\ConsoleCommands\Timers;
 
 use App\Infrastructure\ConsoleCommands\CommandHelper;
+use Override;
 use Symfony\Component\Cache\Adapter\PdoAdapter as Cache;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -20,7 +21,7 @@ final class InvalidateCache extends Command
         parent::__construct();
     }
 
-    #[\Override]
+    #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelper::execute(function (): void {

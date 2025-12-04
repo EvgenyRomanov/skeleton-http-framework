@@ -10,6 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * @psalm-suppress PossiblyUnusedProperty
+ * @psalm-suppress UnusedProperty
+ */
 final class ExampleJob implements ShouldQueue
 {
     use Queueable;
@@ -31,6 +35,7 @@ final class ExampleJob implements ShouldQueue
         $this->data = $data;
     }
 
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function handle(TestService $testService): void
     {
         dump($testService->handle());
