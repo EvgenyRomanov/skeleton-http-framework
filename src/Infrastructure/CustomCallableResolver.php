@@ -27,7 +27,6 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
     }
 
     /**
-     *
      * @throws BindingResolutionException
      */
     public function resolve($toResolve): callable
@@ -45,17 +44,11 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
         return $this->bindToContainer($callable);
     }
 
-    /**
-     *
-     */
     public function resolveRoute($toResolve): callable
     {
         return $this->resolveByPredicate($toResolve, [$this, 'isRoute'], 'handle');
     }
 
-    /**
-     *
-     */
     public function resolveMiddleware($toResolve): callable
     {
         return $this->resolveByPredicate($toResolve, [$this, 'isMiddleware'], 'process');
@@ -63,7 +56,6 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
 
     /**
      * @param callable|string $toResolve
-     *
      * @throws BindingResolutionException|RuntimeException
      */
     private function resolveByPredicate($toResolve, callable $predicate, string $defaultMethod): callable
@@ -87,15 +79,11 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
         return $this->bindToContainer($callable);
     }
 
-    /**
-     */
     private function isRoute($toResolve): bool
     {
         return $toResolve instanceof RequestHandlerInterface;
     }
 
-    /**
-     */
     private function isMiddleware($toResolve): bool
     {
         return $toResolve instanceof MiddlewareInterface;
@@ -130,8 +118,6 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
         return [$instance, $method];
     }
 
-    /**
-     */
     private function assertCallable($resolved, $toResolve): callable
     {
         if (!is_callable($resolved)) {
