@@ -2,6 +2,7 @@
 
 use Dotenv\Dotenv;
 use Illuminate\Container\Container;
+use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -18,6 +19,7 @@ $container = Container::getInstance();
 // Создание web приложения
 $app = AppFactory::createFromContainer($container);
 
+/** @var Slim\App<Psr\Container\ContainerInterface|null> $app */
 // Регистрация маршрутов
 (require __DIR__ . '/routes.php')($app);
 

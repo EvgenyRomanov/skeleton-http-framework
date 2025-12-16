@@ -8,6 +8,7 @@ use Monolog\{
   Logger,
 };
 
+/** @psalm-suppress UnusedClosureParam */
 return static function (Container $container) {
     // Создание экземпляра Logger
     $logger = new Logger('simple_logger');

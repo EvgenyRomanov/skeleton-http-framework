@@ -8,7 +8,7 @@ use Slim\Routing\RouteCollectorProxy;
 use Slim\Views\Twig;
 
 return function (App $app) {
-    $app->get('/', function ($request, $response) {
+    $app->get('/', function (\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Message\ResponseInterface $response) {
         $view = Twig::fromRequest($request);
         return $view->render($response, 'main.html.twig', [
             'hello' => 'Hello World!'

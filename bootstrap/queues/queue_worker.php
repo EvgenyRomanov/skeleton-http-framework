@@ -9,32 +9,49 @@ use Psr\Log\LoggerInterface;
 
 /** @see QueueServiceProvider */
 return function (Container $container): Worker {
+    /** @var Manager $manager */
     $manager = $container[Manager::class];
-  $dispatcher = $container[Dispatcher::class];
-  $logger = $container[LoggerInterface::class];
-  $isDownForMaintenanceHandler = function () {};
-  $handler = new class($logger) implements ExceptionHandler {
-      private LoggerInterface $logger;
+    /** @var Dispatcher $dispatcher */
+    $dispatcher = $container[Dispatcher::class];
+    /** @var LoggerInterface $logger */
+    $logger = $container[LoggerInterface::class];
+    $isDownForMaintenanceHandler = function (): void {};
 
-      public function __construct(LoggerInterface $logger)
-      {
-          $this->logger = $logger;
-      }
-      public function report(Throwable $e)
-      {
-          echo $e->getMessage() . PHP_EOL;
-          $this->logger->error($e->getMessage(), ['Exception' => $e]);
-      }
+    $handler = new class($logger) implements ExceptionHandler {
+        private LoggerInterface $logger;
 
-      public function shouldReport(Throwable $e) {}
-      public function render($request, Throwable $e) {}
-      public function renderForConsole($output, Throwable $e) {}
-  };
+        public function __construct(LoggerInterface $logger)
+        {
+            $this->logger = $logger;
+        }
 
-  return new Worker(
-      $manager->getQueueManager(),
-      $dispatcher,
-      $handler,
-      $isDownForMaintenanceHandler
-  );
+        #[\Override]
+        public function report(Throwable $e)
+        {
+            echo $e->getMessage() . PHP_EOL;
+            $this->logger->error($e->getMessage(), ['Exception' => $e]);
+        }
+
+        #[\Override]
+        public function shouldReport(Throwable $e)
+        {
+            return false;
+        }
+
+        /** @psalm-suppress InvalidReturnType */
+        #[\Override]
+        public function render($request, Throwable $e)
+        {
+        }
+
+        #[\Override]
+        public function renderForConsole($output, Throwable $e) {}
+    };
+
+    return new Worker(
+        $manager->getQueueManager(),
+        $dispatcher,
+        $handler,
+        $isDownForMaintenanceHandler
+    );
 };

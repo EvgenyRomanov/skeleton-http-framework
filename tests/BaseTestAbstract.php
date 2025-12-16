@@ -8,6 +8,7 @@ use Faker\Factory as Faker;
 use Illuminate\Database\Capsule\Manager as DatabaseManager;
 use Override;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Slim\Psr7\Uri;
@@ -33,7 +34,14 @@ abstract class BaseTestAbstract extends TestCase
     {
         $this->faker = Faker::create();
         $this->app = require __DIR__ . '/../bootstrap/bootstrap_web_app.php';
-        $this->capsule = $this->app->getContainer()[DatabaseManager::class];
+        /** @var ContainerInterface $container */
+        $container = $this->app->getContainer();
+        /**
+         * @var DatabaseManager $dbManager
+         * @psalm-suppress UndefinedInterfaceMethod
+         */
+        $dbManager = $container[DatabaseManager::class];
+        $this->capsule = $dbManager;
 
         $this->capsule->getConnection()->beginTransaction();
     }

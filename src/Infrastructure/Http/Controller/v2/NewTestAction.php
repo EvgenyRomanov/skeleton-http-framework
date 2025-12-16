@@ -11,7 +11,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class NewTestAction
 {
-    /** @psalm-suppress UnusedParam */
+    /**
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function index(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         $obj = ['test' => 'index'];
@@ -20,7 +23,10 @@ final class NewTestAction
         return $response->withHeader('Content-Type', 'application/json');
     }
 
-    /** @psalm-suppress UnusedParam */
+    /**
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function show(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         /** @psalm-suppress MixedOperand */

@@ -10,7 +10,12 @@ use Laminas\ConfigAggregator\ConfigAggregator;
 return static function (App $app, Container $container) {
     /** @var ConfigAggregator $configAggregator */
     $configAggregator = $container[ConfigAggregator::class];
+    /** @var array{
+     *     errors: array{display_error_details: bool, log_errors: bool, log_error_details: bool}
+     *     } $config
+     */
     $config = $configAggregator->getMergedConfig();
+    /** @var LoggerInterface $logger */
     $logger = $container[LoggerInterface::class];
 
     $twig = Twig::create(__DIR__ . '/../resources/views', ['cache' => false]);

@@ -17,6 +17,7 @@ use Psr\Http\Message\ServerRequestInterface;
 /** @psalm-suppress UnusedClass */
 final readonly class TestAction
 {
+    /** @psalm-suppress PossiblyUnusedMethod */
     public function __construct(
         private ResponseFactoryInterface                $responseFactory,
         private \Illuminate\Database\Capsule\Manager    $capsule,
@@ -24,7 +25,10 @@ final readonly class TestAction
         private \Illuminate\Contracts\Events\Dispatcher $eventDispatcher
     ) {}
 
-    /** @psalm-suppress UnusedParam */
+    /**
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function index(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // ---------------- DB --------------------------
@@ -49,7 +53,10 @@ final readonly class TestAction
         return $response->withHeader('Content-Type', 'application/json');
     }
 
-    /** @psalm-suppress UnusedParam */
+    /**
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress PossiblyUnusedMethod
+     */
     public function show(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         /** @psalm-suppress MixedOperand */

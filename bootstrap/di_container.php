@@ -25,6 +25,7 @@ return static function (Container $container) {
         function (Container $container) {
             /** @var ConfigAggregator $configAggregator */
             $configAggregator = $container[ConfigAggregator::class];
+            /** @var array{event_listener_mapping: array<string, array<class-string>>} $config */
             $config = $configAggregator->getMergedConfig();
 
             $dispatcher = new \Illuminate\Events\Dispatcher($container);
@@ -51,12 +52,15 @@ return static function (Container $container) {
     $container->singleton(QueueWorker::class, require __DIR__ . '/queues/queue_worker.php');
 
     $container->singleton(BusDispatcher::class, function (Container $container) {
-        return new \Illuminate\Bus\Dispatcher($container, function ($connection = null) use ($container) {
-            return $container[QueueManager::class]->connection($connection);
+        return new \Illuminate\Bus\Dispatcher($container, function (?string $connection = null) use ($container) {
+            /** @var QueueManager $queueManager */
+            $queueManager = $container[QueueManager::class];
+            return $queueManager->connection($connection);
         });
     });
 
     $container->singleton(\Illuminate\Queue\CallQueuedHandler::class, function (Container $container) {
+        /** @var BusDispatcher $dispatcher */
         $dispatcher = $container[BusDispatcher::class];
         return new \Illuminate\Queue\CallQueuedHandler($dispatcher, $container);
     });
