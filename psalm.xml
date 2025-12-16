@@ -11,16 +11,9 @@
         <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
-            <directory name="config" />
-
-            <directory name="database" />
             <directory name="src/Infrastructure/Model" />
             <directory name="src/Infrastructure/Job" />
-
             <file name="src/Infrastructure/CustomCallableResolver.php" />
-            <file name="src/Infrastructure/Listener/JobProcessedListener.php" />
-            <file name="src/Infrastructure/Listener/JobProcessingListener.php" />
-            <file name="src/Infrastructure/Listener/JobFailedListener.php" />
             <directory name="public" />
         </ignoreFiles>
     </projectFiles>
