@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\ConsoleCommand\Test\Job;
 
-use App\Infrastructure\ConsoleCommand\CommandHelper;
+use App\Infrastructure\ConsoleCommand\CommandHelperCommand;
 use App\Infrastructure\Job\ExampleJob;
 use App\Infrastructure\Job\ExampleJob2;
 use App\Infrastructure\Job\ExampleJob3;
@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'queue:push', description: 'Тестирование queue')]
-final class QueuePush extends Command
+final class QueuePushCommand extends Command
 {
     public function __construct(private readonly Dispatcher $dispatcher)
     {
@@ -27,7 +27,7 @@ final class QueuePush extends Command
     #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function (): void {
+        return CommandHelperCommand::execute(function (): void {
             $this->dispatcher->dispatch(new ExampleJob(['message' => 1]));
             \Illuminate\Queue\Capsule\Manager::pushOn('queue2', new ExampleJob(['message' => 2]));
             \Illuminate\Queue\Capsule\Manager::pushOn('default', new ExampleJob2(['message' => 3]));

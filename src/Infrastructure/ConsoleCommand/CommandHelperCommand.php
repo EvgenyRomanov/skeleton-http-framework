@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
-final class CommandHelper
+final class CommandHelperCommand
 {
     /**
      * @psalm-suppress UnusedParam

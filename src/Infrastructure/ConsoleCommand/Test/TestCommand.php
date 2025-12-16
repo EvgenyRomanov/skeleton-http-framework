@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\ConsoleCommand\Test;
 
-use App\Infrastructure\ConsoleCommand\CommandHelper;
+use App\Infrastructure\ConsoleCommand\CommandHelperCommand;
 use App\Infrastructure\Model\User;
 use Override;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -25,7 +25,7 @@ final class TestCommand extends Command
     #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(static function (): void {
+        return CommandHelperCommand::execute(static function (): void {
             dump(User::all());
         }, $input, $output);
     }

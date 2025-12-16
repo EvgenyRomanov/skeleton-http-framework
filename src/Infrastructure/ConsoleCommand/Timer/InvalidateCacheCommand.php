@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\ConsoleCommand;
+namespace App\Infrastructure\ConsoleCommand\Timer;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Infrastructure\ConsoleCommand\CommandHelperCommand;
 use Override;
+use Symfony\Component\Cache\Adapter\PdoAdapter as Cache;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /** @psalm-suppress UnusedClass */
-#[AsCommand(name: 'queue:clear_failed_jobs', description: 'Очистка failed jobs')]
-final class ClearFailedJobs extends Command
+#[AsCommand(name: 'cache:invalidate', description: 'Инвалидация кэша')]
+final class InvalidateCacheCommand extends Command
 {
-    public function __construct(private readonly Capsule $capsule)
+    public function __construct(private readonly Cache $cache)
     {
         parent::__construct();
     }
@@ -23,8 +24,8 @@ final class ClearFailedJobs extends Command
     #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function (): void {
-            $this->capsule::table('illuminate_failed_jobs')->truncate();
+        return CommandHelperCommand::execute(function (): void {
+            $this->cache->prune();
         }, $input, $output);
     }
 }

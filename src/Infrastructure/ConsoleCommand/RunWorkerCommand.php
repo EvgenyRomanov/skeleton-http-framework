@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /** @psalm-suppress UnusedClass */
 #[AsCommand(name: 'worker:run', description: "Запуск worker'а обработки jobs")]
-final class RunWorker extends Command
+final class RunWorkerCommand extends Command
 {
     public function __construct(private readonly Worker $worker)
     {
@@ -110,7 +110,7 @@ final class RunWorker extends Command
     #[Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return CommandHelper::execute(function () use ($input): void {
+        return CommandHelperCommand::execute(function () use ($input): void {
             $connectionName = (string) $input->getArgument('connection_name');
             $queue = (string) $input->getArgument('queue');
 
