@@ -25,6 +25,12 @@
 - ▶️ Примеры использования компонент
 - 🔧 Базовая конфигурация
 
+## 📦 Установка
+
+```bash
+composer create-project evgeny-romanov/lang-detector [my-app-name]
+```
+
 # 📚 Documentation
 
 ## Slim
