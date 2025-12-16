@@ -90,6 +90,8 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
     }
 
     /**
+     * Данный класс переопределен из-за этого метода.
+     *
      * @return array{object, string|null} [Instance, Method Name]
      * @throws BindingResolutionException
      */
@@ -112,7 +114,7 @@ final class CustomCallableResolver implements AdvancedCallableResolverInterface
                 throw new RuntimeException(sprintf('Callable %s does not exist', $class));
             }
 
-            /** Здесь доработано !!!! */
+            /** Здесь доработано! */
             $instance = $this->container->make($class);
         }
         return [$instance, $method];
