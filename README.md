@@ -31,34 +31,34 @@
 composer create-project evgeny-romanov/lang-detector [my-app-name]
 ```
 
-# 📚 Documentation
+## 📚 Documentation
 
-## Slim
+### Slim
 - https://www.slimframework.com/
 - https://php.dragomano.ru/slim-4-kratkiy-kurs/
 - https://github.com/odan/slim4-skeleton
 - https://github.com/odan/slim4-tutorial?tab=readme-ov-file
-## ORM, Database
+### ORM, Database
 - https://laravel.com/docs/12.x/eloquent
 - https://laravel.com/docs/12.x/database
 - https://laravel.su/docs/12.x/database
 - https://laravel.su/docs/12.x/eloquent
 - https://github.com/hexlet-components/php-eloquent-blog
-## VarDumper
+### VarDumper
 - https://symfony.com/doc/current/components/var_dumper.html
-## IoC
+### IoC
 - https://laravel.su/docs/12.x/container
 - https://habr.com/ru/articles/331982/
-## Queue, Jobs, Workers
+### Queue, Jobs, Workers
 - https://laravel.su/docs/12.x/queues
 - https://laravel.com/docs/12.x/queues
 - https://github.com/illuminate/queue
-## Migrations
+### Migrations
 - https://www.doctrine-project.org/projects/doctrine-migrations/en/3.9/reference/introduction.html
-## Console Commands
+### Console Commands
 - https://dev.to/robertobutti/building-a-command-line-tool-with-php-and-symfony-console-4n6g
 - https://odan.github.io/slim4-skeleton/console.html
 - https://php.zone/symfony-course/znakomstvo-s-konsolnymi-komandami-v-symfony-cron
 - https://symfony.com/doc/current/components/console.html
-## Cache
+### Cache
 https://symfony.com/doc/7.3/cache.html
