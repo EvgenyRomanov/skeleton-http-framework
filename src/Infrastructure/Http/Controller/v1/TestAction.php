@@ -44,8 +44,7 @@ final readonly class TestAction
         $this->eventDispatcher->dispatch(new ExampleEvent('1q2w3e'));
 
         $response = $this->responseFactory->createResponse();
-        /** @psalm-suppress PossiblyFalseArgument */
-        $response->getBody()->write(json_encode([1, 2, 3, 4, 5]));
+        $response->getBody()->write((string) json_encode([1, 2, 3, 4, 5]));
 
         return $response->withHeader('Content-Type', 'application/json');
     }
@@ -55,8 +54,7 @@ final readonly class TestAction
     {
         /** @psalm-suppress MixedOperand */
         $res = ['test' => 'show_' . $args['id']];
-        /** @psalm-suppress PossiblyFalseArgument */
-        $response->getBody()->write(json_encode($res));
+        $response->getBody()->write((string) json_encode($res));
 
         return $response->withHeader('Content-Type', 'application/json');
     }

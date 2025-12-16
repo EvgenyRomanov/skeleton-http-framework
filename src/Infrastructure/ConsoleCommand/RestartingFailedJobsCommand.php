@@ -31,7 +31,7 @@ final class RestartingFailedJobsCommand extends Command
 
             foreach ($failedJobs as $failedJob) {
                 // Отправляем задачу обратно в очередь
-                /** @psalm-suppress MixedArgument */
+                /** @var object{payload: string, queue: string|null, id: int} $failedJob */
                 $this->manager->pushRaw($failedJob->payload, $failedJob->queue);
 
                 // Удаляем задачу из таблицы failed_jobs

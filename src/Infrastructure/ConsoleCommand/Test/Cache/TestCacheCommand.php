@@ -26,7 +26,7 @@ final class TestCacheCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         return CommandHelperCommand::execute(function (): void {
-            /** @psalm-suppress MixedAssignment */
+            /** @var string $val */
             $val = $this->cache->get('my_cache_key', static function (ItemInterface $item): string {
                 $item->expiresAfter(30);
                 return 'foobar';
