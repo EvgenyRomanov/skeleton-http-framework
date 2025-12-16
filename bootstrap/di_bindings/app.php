@@ -35,6 +35,8 @@ return static function (Container $container): void {
     });
 
     $container->singleton(ResponseFactoryInterface::class, function (Container $container) {
-        return $container[App::class]->getResponseFactory();
+        /** @var App $app */
+        $app = $container[App::class];
+        return $app->getResponseFactory();
     });
 };

@@ -13,6 +13,11 @@ return static function (Container $container): void {
     $container->singleton(DependencyFactory::class, function (Container $container) {
         /** @var ConfigAggregator $configAggregator */
         $configAggregator = $container[ConfigAggregator::class];
+        /** @var array{
+         *     migrations: array<string, mixed>,
+         *     db: array{database: string, username: string, password: string, host: string, driver: string, port: int}
+         *     } $config
+         */
         $config = $configAggregator->getMergedConfig();
 
         return DependencyFactory::fromConnection(
@@ -30,43 +35,46 @@ return static function (Container $container): void {
         );
     });
 
-    $container->singleton(Command\DumpSchemaCommand::class, function (Container $container) {
-        return new Command\DumpSchemaCommand($container[DependencyFactory::class]);
+    /** @var DependencyFactory $depFactory */
+    $depFactory = $container[DependencyFactory::class];
+
+    $container->singleton(Command\DumpSchemaCommand::class, function () use ($depFactory) {
+        return new Command\DumpSchemaCommand($depFactory);
     });
 
-    $container->singleton(Command\ExecuteCommand::class, function (Container $container) {
-        return new Command\ExecuteCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\ExecuteCommand::class, function () use ($depFactory) {
+        return new Command\ExecuteCommand($depFactory);
     });
 
-    $container->singleton(Command\GenerateCommand::class, function (Container $container) {
-        return new Command\GenerateCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\GenerateCommand::class, function () use ($depFactory) {
+        return new Command\GenerateCommand($depFactory);
     });
 
-    $container->singleton(Command\LatestCommand::class, function (Container $container) {
-        return new Command\LatestCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\LatestCommand::class, function () use ($depFactory) {
+        return new Command\LatestCommand($depFactory);
     });
 
-    $container->singleton(Command\ListCommand::class, function (Container $container) {
-        return new Command\ListCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\ListCommand::class, function () use ($depFactory) {
+        return new Command\ListCommand($depFactory);
     });
 
-    $container->singleton(Command\MigrateCommand::class, function (Container $container) {
-        return new Command\MigrateCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\MigrateCommand::class, function () use ($depFactory) {
+        return new Command\MigrateCommand($depFactory);
     });
 
-    $container->singleton(Command\RollupCommand::class, function (Container $container) {
-        return new Command\RollupCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\RollupCommand::class, function () use ($depFactory) {
+        return new Command\RollupCommand($depFactory);
     });
 
-    $container->singleton(Command\StatusCommand::class, function (Container $container) {
-        return new Command\StatusCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\StatusCommand::class, function () use ($depFactory) {
+        return new Command\StatusCommand($depFactory);
     });
 
-    $container->singleton(Command\SyncMetadataCommand::class, function (Container $container) {
-        return new Command\SyncMetadataCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\SyncMetadataCommand::class, function () use ($depFactory) {
+        return new Command\SyncMetadataCommand($depFactory);
     });
 
-    $container->singleton(Command\VersionCommand::class, function (Container $container) {
-        return new Command\VersionCommand($container[DependencyFactory::class]);
+    $container->singleton(Command\VersionCommand::class, function () use ($depFactory) {
+        return new Command\VersionCommand($depFactory);
     });
 };
