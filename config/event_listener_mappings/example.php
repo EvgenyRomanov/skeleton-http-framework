@@ -2,9 +2,9 @@
 
 return [
     'event_listener_mapping' => [
-        \App\Infrastructure\Events\ExampleEvent::class => [
-            \App\Infrastructure\Listeners\ExampleEventListener::class,
-            \App\Infrastructure\Listeners\ExampleEventListener2::class,
+        \App\Infrastructure\Event\ExampleEvent::class => [
+            \App\Infrastructure\Listener\ExampleEventListener::class,
+            \App\Infrastructure\Listener\ExampleEventListener2::class,
         ],
     ]
 ];

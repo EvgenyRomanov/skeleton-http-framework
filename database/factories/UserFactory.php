@@ -2,7 +2,7 @@
 
 namespace App\Factories;
 
-use App\Infrastructure\Models\User;
+use App\Infrastructure\Model\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Integration\EloquentModels;
 
-use App\Infrastructure\Models\User;
+use App\Infrastructure\Model\User;
 use Tests\BaseTestAbstract;
 
 /**

@@ -1,7 +1,7 @@
 <?php
 
-use App\Infrastructure\Http\Controllers\v1\TestAction;
-use App\Infrastructure\Http\Controllers\v2\NewTestAction;
+use App\Infrastructure\Http\Controller\v1\TestAction;
+use App\Infrastructure\Http\Controller\v2\NewTestAction;
 use App\Infrastructure\Http\Middleware\AddHeadersMiddleware;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;

@@ -15,9 +15,9 @@
             <directory name="bootstrap" />
             <directory name="database" />
             <file name="src/Infrastructure/CustomCallableResolver.php" />
-            <file name="src/Infrastructure/Listeners/JobProcessedListener.php" />
-            <file name="src/Infrastructure/Listeners/JobProcessingListener.php" />
-            <file name="src/Infrastructure/Listeners/JobFailedListener.php" />
+            <file name="src/Infrastructure/Listener/JobProcessedListener.php" />
+            <file name="src/Infrastructure/Listener/JobProcessingListener.php" />
+            <file name="src/Infrastructure/Listener/JobFailedListener.php" />
             <directory name="public" />
         </ignoreFiles>
     </projectFiles>
