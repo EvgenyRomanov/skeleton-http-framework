@@ -28,7 +28,7 @@
 ## 📦 Установка
 
 ```bash
-composer create-project evgeny-romanov/lang-detector [my-app-name]
+composer create-project evgeny-romanov/skeleton-http-framework [my-app-name]
 ```
 
 ## 📚 Documentation
