@@ -20,6 +20,7 @@ services:
     php-cli:
         build:
             context: docker/dev/php-cli
+        profiles: ["cli"]
         volumes:
             - ./:/app
         depends_on:
