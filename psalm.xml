@@ -13,7 +13,6 @@
             <directory name="vendor" />
             <directory name="src/Infrastructure/Model" />
             <directory name="src/Infrastructure/Job" />
-            <file name="src/Infrastructure/CustomCallableResolver.php" />
             <directory name="public" />
         </ignoreFiles>
     </projectFiles>
