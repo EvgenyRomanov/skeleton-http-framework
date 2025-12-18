@@ -4,7 +4,7 @@
 Представляет собой скелет типового HTTP-проекта на PHP.  
 
 В проекте собраны и настроены следующие модули:
- - Компоненты из экосистемы Slim (HTTP-ядро)
+ - Компоненты из экосистемы Slim
     - HTTP-ядро (`slim/psr7`, `slim/slim`, `slim/twig-view`)
  - Компоненты из экосистемы Laravel
     - ORM Eloquent (`illuminate/database`)
@@ -61,4 +61,4 @@ composer create-project evgeny-romanov/skeleton-http-framework [my-app-name]
 - https://php.zone/symfony-course/znakomstvo-s-konsolnymi-komandami-v-symfony-cron
 - https://symfony.com/doc/current/components/console.html
 ### Cache
-https://symfony.com/doc/7.3/cache.html
+- https://symfony.com/doc/7.3/cache.html
